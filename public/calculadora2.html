@@ -1,0 +1,134 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador Financeiro</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/calculadora2.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/logoMenu.svg"
+      type="image/x-icon"
+    />
+    <script src="./js/funcoes.js"></script>
+  </head>
+  <body>
+    <div class="container_calculadora">
+      <div class="container_cabecalho">
+        <header class="cabecalho">
+          <h1 class="logo"><img src="assets/Img/logoMenu.svg" alt="" /></h1>
+          <nav class="menu">
+            <ul>
+              <li><a href="index.html">Início</a></li>
+              <li>
+                <a class="ativo" href="calculadora2.html">Calculadora</a>
+              </li>
+              <li><a href="Beneficios.html">Benefícios</a></li>
+              <li>|</li>
+              <li><a href="Login.html">Login</a></li>
+              <li><a href="Cadastro.html">Cadastro</a></li>
+            </ul>
+          </nav>
+        </header>
+      </div>
+      <div class="tela_calculo">
+        <div class="left_side">
+          <div class="card_simulador">
+            <h1>SIMULADOR FINANCEIRO</h1>
+            <div id="solicitacao" class="solicitacao">
+              <div class="textfield">
+                <label for="sacas">Informe a quantidade de sacas: </label>
+                <input type="text" id="inputSacas" placeholder="R$" />
+              </div>
+              <div class="textfield">
+                <label for="">Gasto mensal com água: </label>
+                <input type="text" id="inputAgua" placeholder="R$" />
+              </div>
+              <span style="color: #f0ffffde"
+                >Preço por saca: <b>R$ 195,00</b></span
+              >
+              <button onclick="btnCalcular()" class="btn_calcular">
+                Calcular
+              </button>
+            </div>
+            <div class="resultados" id="resultados">
+              <h3 style="color: white">Resultados</h3>
+              <hr />
+              <p style="color: #f0ffffde">
+                Perdas devido a problemas de temperatura e umidade
+              </p>
+              <span class="textoResultado"
+                ><b style="color: white">Perdas:</b>
+                <span id="rstPerda">-</span></span
+              >
+              <hr />
+              <p style="color: #f0ffffde">
+                Com o nosso serviço é esperado um lucro de 20%
+              </p>
+              <span class="textoResultado"
+                ><b style="color: white">Lucro:</b>
+                <span id="rstLucro">-</span></span
+              >
+              <hr />
+              <p style="color: #f0ffffde">
+                É esperado que o gasto mensal com água venha à diminuir
+              </p>
+              <span class="textoResultado"
+                ><b style="color: white">Água:</b>
+                <span id="rstAgua">-</span></span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="right_side">
+          <img src="assets/Img/moneygirl.svg" />
+        </div>
+      </div>
+      <footer>
+        <div class="containerFooter">
+          <nav class="menuFooter">
+            BIOTECH SOY © - 2022
+            <br /><br />
+            Empresa voltada para a instalação de sensores para o melhor
+            gerenciamento de suas platantações.
+          </nav>
+          <div class="redes">
+            <img src="assets/Img/logoFace.svg" alt="" />
+            <img src="assets/Img/logoTwitter.svg" alt="" />
+            <img src="assets/Img/logoInsta.svg" alt="" />
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      function btnCalcular() {
+        var sacas = inputSacas.value;
+        var agua = inputAgua.value;
+
+        var valorPerda = sacas * 0.75 * 195;
+        var valorLucro = sacas * 0.2 * 195;
+        var valorAgua = agua * 0.3;
+
+        solicitacao.style.display = "none";
+        resultados.style.display = `block`;
+
+        rstPerda.innerHTML = `R$ ${valorPerda.toFixed(2)}`;
+        rstLucro.innerHTML = `R$ ${valorLucro.toFixed(2)}`;
+        rstAgua.innerHTML = `- R$ ${valorAgua.toFixed(2)}`;
+        rstPerda.style.fontSize = "24px";
+        rstPerda.style.color = "rgb(231, 31, 31)";
+
+        rstLucro.style.fontSize = "24px";
+        rstLucro.style.color = "#90ee90";
+
+        rstAgua.style.fontSize = "24px";
+        rstAgua.style.color = "rgb(14, 14, 224)";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <div class="logo_content">
+        <div class="logo">
+          <i class="bx bxs-leaf" style="color: green"></i>
+          <div class="logo_name">BiotechSOY</div>
+        </div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav_list">
+        <li>
+          <a href="#">
+            <i class="bx bx-bar-chart-square"></i>
+            <span class="links_name">Gráficos</span>
+          </a>
+          <span class="tooltip">Gráficos</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-chat"></i>
+            <span class="links_name">Painel de Alertas</span>
+          </a>
+          <span class="tooltip">Painel de Alertas</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-cog"></i>
+            <span class="links_name">Configurações</span>
+          </a>
+          <span class="tooltip">Configurações</span>
+        </li>
+      </ul>
+      <div class="profile_content">
+        <div class="profile">
+          <div class="profile_details">
+            <a href="perfis.html">
+              <img src="../assets/img/perfil.jpg" alt="" />
+            </a>
+
+            <div class="name_job">
+              <div class="name">Fernando Brandão</div>
+              <div class="job">SPTech</div>
+            </div>
+          </div>
+          <a href="../login.html" style="color: inherit"
+            ><i class="bx bx-log-out" id="log_out"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      
+      <div class="title">
+        Gráficos |
+        <select class="sel_home_content" name="" id="sel_hectar" onchange="opt_2()">
+          <option value="hec1">Hectare 1</option>
+          <option value="hec2" >Hectare 2</option>
+          <option value="hec3">Hectare 3</option>
+        </select>
+      </div>
+
+      <div class="graficos" style="display: block;" id="hectar1">
+
+        <div class="parte1">
+
+          <div class="chart">
+            <canvas id="grafico1"></canvas>
+          </div>
+          <div class="chart">
+            <canvas id="grafico2"></canvas>
+          </div>
+
+        </div>
+
+        <div class="parte2">
+
+          <div class="alerta"><i class="bx bx-error"></i> Alertas:</div>
+          <div class="chart">
+          <canvas id="grafico3"></canvas>  
+          </div>
+
+        </div>
+
+      </div>
+
+        <div class="graficos" style="display: block;" id="hectar2">
+
+          <div class="parte1">
+  
+            <div class="chart">
+              <canvas id="grafico4"></canvas>
+            </div>
+            <div class="chart">
+              <canvas id="grafico5"></canvas>
+            </div>
+  
+          </div>
+  
+          <div class="parte2">
+  
+            <div class="alerta"><i class="bx bx-error"></i> Alertas:</div>
+            <div class="chart">
+              <canvas id="grafico6"></canvas>  
+            </div>
+  
+          </div>
+  
+        </div>
+
+        <div class="graficos" style="display: block;" id="hectar3">
+
+          <div class="parte1">
+  
+            <div class="chart">
+              <canvas id="grafico7"></canvas>
+            </div>
+            <div class="chart">
+              <canvas id="grafico8"></canvas>
+            </div>
+  
+          </div>
+  
+          <div class="parte2">
+  
+            <div class="alerta"><i class="bx bx-error"></i> Alertas:</div>
+            <div class="chart">
+            <canvas id="grafico9"></canvas>  
+            </div>
+  
+          </div>
+  
+        </div>
+
+      
+
+    </div>
+
+</html>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+    <script>
+      let btn = document.querySelector("#btn");
+      let sidebar = document.querySelector(".sidebar");
+      let searchBtn = document.querySelector(".bx-search");
+
+      btn.onclick = function () {
+        sidebar.classList.toggle("active");
+      };
+
+     
+    function opt_2() {
+        
+      if (sel_hectar.value == "hec1") {
+        hectar1.style.display = 'block'
+        hectar2.style.display = 'none'
+        hectar3.style.display = 'none'
+        alert("Print")
+      }
+
+      if (sel_hectar.value == "hec2") {
+        hectar1.style.display = 'none'
+        hectar2.style.display = 'block'
+        hectar3.style.display = 'none'
+        alert("Print")
+      }
+
+      if (sel_hectar.value == "hec3") {
+        hectar1.style.display = 'none'
+        hectar2.style.display = 'none'
+        hectar3.style.display = 'block'
+        alert("Print")
+      }
+
+    }
+
+    </script>
+  </body>
+</html>

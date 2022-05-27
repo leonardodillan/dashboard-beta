@@ -1,0 +1,228 @@
+/** @format */
+
+body {
+    background: #F6F8FA;
+    }
+    
+    /* HEADER */
+    .menu ul {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+  
+    .menu ul li a{
+      font-size: 10px;
+      color: black; 
+    }
+    
+    
+    .cabecalho {
+      border-bottom: 2px solid #499D33;
+      border-radius: 2px;
+      width: 80%;
+      margin:  0 auto;
+      background: #0e0d14;
+      display: flex;
+      justify-content: space-between;
+      height: 80px;
+      color: black;
+    }
+    
+    .container_cabecalho {
+      
+      background-color: #0e0d14;
+    }
+
+    .container_cabecalho ul li a{
+      color: white;
+    }
+    
+    /*Corpo*/
+    .main-cadastro {
+      height: 100vh;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    
+    .cadastro-esquerda {
+      width: 40vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-left: 170px;
+    }
+    .cadastro-esquerda h2{
+      font-size: 20pt;
+    }
+
+    .cadastro-esquerda h2 span{
+      font-size: 25pt;
+      color: #06a85d;
+    }
+
+
+
+    
+    .cadastro-direita {
+      width: 50vw;
+      height: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .card-cadastro {
+      width: 60%;
+      height: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 0px 15px;
+      background-color: #12111a;
+      border-radius: 20px;
+      box-shadow: 0px 10px 40px #00000056;
+      border-top: 1px black solid;
+      border-bottom: 1px solid black;
+      border-left: 1px black solid;
+      border-right: 1px black solid;
+      color: black;
+    }
+    
+    .card-cadastro  h1 {
+      font-weight: 800;
+      margin: 0;
+      font-size: 25px;
+      text-transform: uppercase;
+      color: #06a85d;
+    }
+    
+    .textfield {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      margin: 6px 0px;
+      width: 100%;
+      
+    }
+    
+    .textfield > input {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 8px;
+      background-color: #3b4e57;
+      color: white;
+      font-size: 10pt;
+      margin: 2px;
+    }
+
+    
+    
+    ::placeholder {
+      color: #000;
+      opacity: 0.5;
+    }
+    
+    .textfield > label {
+      color: white;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 11pt;
+    }
+    
+    .textfield > input::placeholder {
+      color: white;
+    }
+    
+    .btn-cadastro {
+      width: 100%;
+      padding: 7px 12px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: white;
+      background-color: #06a85d;
+      box-shadow: 5px 5px 5px black;
+      cursor: pointer;
+      border-top: 1px black solid;
+      border-bottom: 1px solid black;
+      border-left: 1px black solid;
+      border-right: 1px black solid;
+    }
+    
+    /* FOOTER */
+    footer {
+      background-color: #0e0d14;
+      color: white;
+      height: 120px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      
+    }
+    
+    .containerFooter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 40px;
+    }
+    
+    .menuFooter {
+      width: 50vw;
+      font-size: 11px;
+    }
+    
+    footer .menuFooter ul {
+      display: flex;
+    }
+    
+    .menuFooter ul li {
+      list-style: none;
+      margin-left: 30px;
+    }
+    
+    .menuFooter ul li:nth-child(1) {
+      margin-left: 0;
+    }
+    
+    
+    
+    footer .redes {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      grid-template-columns: 1fr;
+      grid-template-rows: 2fr;
+      width: 300px;
+    }
+    
+    footer .redes img{
+      height: 45px;
+      padding-right: 50px;
+    }
+    
+    .redes .redesSub {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+    
+    .redes .imgRedes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr;
+      justify-items: center;
+      
+    }

@@ -1,0 +1,85 @@
+<!-- @format -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: 0;
+      }
+
+      body {
+        color: #fff;
+        background-color: #333;
+        font-family: "Roboto", sans-serif;
+      }
+
+      a {
+        color: #e4e1e1;
+      }
+      .containerPerfil {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .perfil {
+        margin-right: 100px;
+      }
+
+      .perfil img {
+        border-radius: 50%;
+        display: block;
+        margin-bottom: 20px;
+        border: 4px solid #e4e1e1;
+      }
+
+      .perfil a {
+        text-decoration: none;
+        font-size: 32px;
+        letter-spacing: 1px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .fechar {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="containerPerfil">
+      <a href="dashboard.html">
+        <img class="fechar" src="close.svg" alt="" />
+      </a>
+      <div class="perfil">
+        <a href="dashboard.html">
+          <img src="../assets/img/perfil.jpg" alt="" />
+          Fazenda 1
+        </a>
+      </div>
+      <div class="perfil">
+        <a href="dashboard.html">
+          <img src="../assets/img/perfil.jpg" alt="" />
+          Fazenda 2
+        </a>
+      </div>
+      <div class="perfil">
+        <a href="dashboard.html">
+          <img src="../assets/img/perfil.jpg" alt="" />
+          Fazenda 3
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

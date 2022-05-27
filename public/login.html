@@ -1,0 +1,179 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/logoMenu.svg"
+      type="image/x-icon"
+    />
+    <title>Login</title>
+    <script src="./js/funcoes.js"></script>
+  </head>
+  <body>
+    <!-- Peguem este header e utilizem para a parte do site de cada um de vocês -->
+    <!-- Utilizem as imagens que estão nos repositórios, e procurem a imagem da logo para por -->
+
+    <div class="container_cabecalho">
+      <header class="cabecalho">
+        <h1 class="logo"><img src="assets/img/logoMenu.svg" alt="" /></h1>
+        <nav class="menu">
+          <ul>
+            <li>
+              <a href="index.html">Início</a>
+            </li>
+            <li><a href="calculadora2.html">Calculadora</a></li>
+            <li><a href="Beneficios.html">Benefícios</a></li>
+            <li>|</li>
+            <li><a class="ativo" href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastro</a></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+
+    <div class="main-login">
+      <div class="login-esquerda">
+        <h2 class="top">
+          Olá,<br />
+          <span>Seja bem-vindo de volta</span>
+        </h2>
+        <img src="assets/Img/login2.svg" width="80%" height="80%" alt="" />
+      </div>
+
+      <div class="login-direita">
+        <div class="card-login">
+          <h1>Login</h1>
+          <div class="textfield">
+            <label for="usuario">Usuário</label>
+            <input
+              type="text"
+              name="usuario"
+              placeholder="Digite aqui o seu usuário"
+              id="iptEmail"
+            />
+          </div>
+          <div class="textfield">
+            <label for="senha">Senha</label>
+            <input
+              type="password"
+              name="senha"
+              placeholder="Digite aqui a sua senha"
+              id="iptSenha"
+            />
+          </div>
+          <button class="btn-login" onclick="entrar()">Login</button>
+          <a href="Cadastro.html" class="goCadastro"
+            >Não possuí cadastro? Venha se cadastrar</a
+          >
+          <div id="div_aguardar" class="loading-div" style="display: none">
+            Carregando
+          </div>
+          <div class="card_erro" id="cardErro">
+            <span id="mensagem_erro"></span>
+          </div>
+          <div id="div_erros_login"></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="containerFooter">
+        <nav class="menuFooter">
+          BIOTECH SOY © - 2022
+          <br /><br />
+          Empresa voltada para a instalação de sensores para o melhor
+          gerenciamento de suas platantações.
+        </nav>
+        <div class="redes">
+          <img src="assets/Img/logoFace.svg" alt="" />
+          <img src="assets/Img/logoTwitter.svg" alt="" />
+          <img src="assets/Img/logoInsta.svg" alt="" />
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function entrar() {
+        aguardar();
+
+        var emailVar = iptEmail.value;
+        var senhaVar = iptSenha.value;
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS
+        if (emailVar == "" || senhaVar == "") {
+          cardErro.style.display = "block";
+         alert('Preencha todos os campos para prosseguir!')
+          finalizarAguardar();
+          return false;
+        } else {
+          setInterval(sumirMensagem, 5000);
+        }
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+          cardErro.style.display = "block";
+          alert('Ops, e-mail inválido! Verifique e tente novamente.')
+          finalizarAguardar();
+          return false;
+        } else {
+          setInterval(sumirMensagem, 5000);
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar,
+          }),
+        })
+          .then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!");
+
+            if (resposta.ok) {
+              console.log(resposta);
+
+              resposta.json().then((json) => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+
+                sessionStorage.EMAIL_USUARIO = json.email;
+                sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.ID_USUARIO = json.id;
+
+                setTimeout(function () {
+                  window.location = "./dashboard/dashboard.html";
+                }, 1000); // apenas para exibir o loading
+              });
+            } else {
+              console.log("Houve um erro ao tentar realizar o login!");
+
+              resposta.text().then((texto) => {
+                console.error(texto);
+                finalizarAguardar(texto);
+              });
+            }
+          })
+          .catch(function (erro) {
+            console.log(erro);
+          });
+
+        return false;
+      }
+
+      function sumirMensagem() {
+        cardErro.style.display = "none";
+      }
+    </script>
+  </body>
+</html>

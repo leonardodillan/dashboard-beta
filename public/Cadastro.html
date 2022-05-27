@@ -1,0 +1,210 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/cadastro.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/logoMenu.svg"
+      type="image/x-icon"
+    />
+    <title>Cadastro</title>
+    <script src="js/funcoes.js"></script>
+  </head>
+  <body>
+    <div class="container_cabecalho">
+      <header class="cabecalho">
+        <h1 class="logo"><img src="assets/Img/logoMenu.svg" alt="" /></h1>
+        <nav class="menu">
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="calculadora2.html">Calculadora</a></li>
+            <li><a href="Beneficios.html">Benefícios</a></li>
+            <li class="traco">|</li>
+            <li><a href="Login.html">Login</a></li>
+            <li>
+              <a class="ativo" href="Cadastro.html">Cadastro</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div class="main-cadastro">
+      <div class="cadastro-esquerda">
+        <h2>
+          Faça seu cadastro<br />
+          <span>é simples e rápido</span>
+        </h2>
+        <img src="assets/Img/cadastro2.svg" width="80%" height="80%" alt="" />
+      </div>
+
+      <div class="cadastro-direita">
+        <div class="card-cadastro">
+          <h1>Cadastro</h1>
+          <div class="textfield">
+            <label for="nome">Nome</label>
+            <input
+              type="text"
+              name="nome"
+              placeholder="Digite aqui o seu nome"
+              id="iptNome"
+            />
+          </div>
+          <div class="textfield">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              name="email"
+              placeholder="Digite aqui o seu email"
+              id="iptEmail"
+            />
+          </div>
+          <div class="textfield">
+            <label for="tel">Telefone</label>
+            <input
+              type="text"
+              name="tel"
+              placeholder="Coloque seu telefone"
+              id="iptTelefone"
+            />
+          </div>
+          <div class="textfield">
+            <label for="senha">Senha</label>
+            <input
+              type="password"
+              name="senha"
+              placeholder="Digite aqui a sua senha"
+              id="iptSenha"
+            />
+          </div>
+          <div class="textfield">
+            <label for="senha">Confirmação de senha</label>
+            <input
+              type="password"
+              name="senha"
+              placeholder="Digite novamente a sua senha"
+              id="iptSenha2"
+            />
+          </div>
+          <button class="btn-cadastro" onclick="cadastrar()">
+            Cadastrar
+          </button>
+          <div id="div_aguardar" class="loading-div" style="display: none">
+            Carregando
+          </div>
+          <div class="card_erro" id="cardErro" style="color: #fff">
+            <span id="mensagem_erro"></span>
+          </div>
+          <div id="div_erros_login"></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="containerFooter">
+        <nav class="menuFooter">
+          BIOTECH SOY © - 2022
+          <br /><br />
+          Empresa voltada para a instalação de sensores para o melhor
+          gerenciamento de suas platantações.
+        </nav>
+        <div class="redes">
+          <img src="assets/Img/logoFace.svg" alt="" />
+          <img src="assets/Img/logoTwitter.svg" alt="" />
+          <img src="assets/Img/logoInsta.svg" alt="" />
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function cadastrar() {
+        aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = iptNome.value;
+        var emailVar = iptEmail.value;
+        var telefoneVar = iptTelefone.value;
+        var senhaVar = iptSenha.value;
+        var confirmacaoSenhaVar = iptSenha2.value;
+
+        if (
+          nomeVar == "" ||
+          emailVar == "" ||
+          telefoneVar == "" ||
+          senhaVar == "" ||
+          confirmacaoSenhaVar == ""
+        ) {
+          cardErro.style.display = "block";
+          alert ('Preencha todos os campos para prosseguir!');
+
+          finalizarAguardar();
+          return false;
+        } else {
+          setInterval(sumirMensagem, 5000);
+        }
+
+        if (emailVar.indexOf("@") == -1) {
+          cardErro.style.display = "block";
+          alert('Ops, e-mail inválido! Verifique e tente novamente.');
+          finalizarAguardar();
+          return false;
+        } else {
+          setInterval(sumirMensagem, 5000);
+        }
+
+        if (senhaVar != confirmacaoSenhaVar) {
+          cardErro.style.display = "block";
+          alert('As senhas inseridas devem ser iguais para prosseguir!');
+          finalizarAguardar();
+          return false;
+        } else {
+          setInterval(sumirMensagem, 5000);
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeServer: nomeVar,
+            emailServer: emailVar,
+            telefoneServer: telefoneVar,
+            senhaServer: senhaVar,
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              cardErro.style.display = "block";
+              alert('Cadastro realizado com sucesso!');
+              window.location = "login.html";
+              limparFormulario();
+              finalizarAguardar();
+            } else {
+              throw "Houve um erro ao tentar realizar o cadastro2!";
+            }
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+          });
+
+        return false;
+      }
+
+      function sumirMensagem() {
+        cardErro.style.display = "none";
+      }
+    </script>
+  </body>
+</html>
